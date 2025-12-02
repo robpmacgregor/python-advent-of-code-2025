@@ -16,11 +16,13 @@ class Safe:
                 raise ValueError(f'{e} is not a valid prefix')
 
     def _rotate_left(self, count):
+        rotations = count // 100 + (1 if 0 < self._current_position <= count % 100 else 0)
         self._current_position = (self._current_position - count % self.MAX_DIAL_POSITION) % self.MAX_DIAL_POSITION
 
-        return self._current_position
+        return self._current_position, rotations
 
     def _rotate_right(self, count):
+        rotations = count // 100 + (1 if 0 < self._current_position and  self._current_position + (count % 100) >= self.MAX_DIAL_POSITION else 0)
         self._current_position = (self._current_position + count % self.MAX_DIAL_POSITION) % self.MAX_DIAL_POSITION
 
-        return self._current_position
+        return self._current_position, rotations

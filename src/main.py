@@ -13,10 +13,10 @@ match args[1]:
             movements = [line.rstrip() for line in file]
 
         safe = Safe(50)
-        zero_position_count = 0
-        counter = 1
+        zero_position_sum = 0
 
         for movement in movements:
-            zero_position_count += 1 if safe.rotate_dial(movement) == 0 else 0
+            _, zero_count = safe.rotate_dial(movement)
+            zero_position_sum += zero_count
 
-        print(f'The password is: {zero_position_count}')
+        print(f'The password is: {zero_position_sum}')
