@@ -1,3 +1,5 @@
+import pytest
+
 from src.day_two.functions import inclusive_range_from_string, validate_id
 
 
@@ -16,3 +18,11 @@ def test_validate_id_returns_true_for_valid_id():
 def test_validate_id_returns_false_for_invalid_id():
     id = 1313
     assert validate_id(id) is False
+
+@pytest.mark.parametrize("test_input", [111, 1313, 145145145, 676767, 88])
+def test_validate_id_regex_returns_false_for_invalid_id(test_input):
+    assert validate_id(test_input) is False
+
+@pytest.mark.parametrize("test_input", [1, 121, 13132, 1045145145, 67618767, 808])
+def test_validate_id_regex_returns_true_for_valid_id(test_input):
+    assert validate_id(test_input) is True
