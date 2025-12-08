@@ -39,9 +39,11 @@ match args[1]:
         print(f'The sum of invalid product ids is: {sum_of_invalid_ids}')
 
     case 'day-three':
+        ACTIVE_BATTERY_COUNT = 12
         input_file = 'day-three.txt'
         with open(os.path.join(DATA_DIR, input_file)) as file:
-            total_joltage = sum([find_highest_digits_in_order(line.rstrip(),2) for line in file])
+            total_joltage = sum([find_highest_digits_in_order(line.rstrip(),ACTIVE_BATTERY_COUNT) for line in file])
+
         print(f'The total joltage is: {total_joltage}')
 
 
